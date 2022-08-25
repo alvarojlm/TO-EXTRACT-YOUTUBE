@@ -7,6 +7,7 @@ from pytube import YouTube
 from pytube.cli import on_progress
 from tkinter.filedialog import askdirectory
 
+
 def seletor_res():
     b_ad=ui.button_audio
     resol=ui.select_resolution
@@ -31,11 +32,11 @@ def baixar():
             print('verificou')
             sv=askdirectory()
             lk=YouTube(ui.link.toPlainText(), on_progress_callback=on_progress)
-
+            resolt = ui.select_resolution.currentText()
             if ui.button_audio.isChecked():
                 centro_dw(sv, lk, 2)
             elif ui.button_video.isChecked():
-                centro_dw(sv, lk, 1)
+                centro_dw(sv, lk, 1, resolt)
 
             ui.link.clear()
         else:

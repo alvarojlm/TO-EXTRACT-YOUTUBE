@@ -178,7 +178,7 @@ class Ui_Principal(object):
         self.select_resolution.setGeometry(QtCore.QRect(310, 260, 86, 25))
         self.select_resolution.setObjectName("select_resolution")
 
-        resolution_list = ["720p", "480p", "360p"]
+        resolution_list = ["1080p", "720p","360p"]
 
         self.select_resolution.addItems(resolution_list)
         self.select_resolution.hide()
