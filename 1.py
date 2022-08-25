@@ -1,4 +1,5 @@
 from pytube import YouTube
+from pytube.cli import on_progress
 from controle import verifica_origem, tip_dw
 from dw import centro_dw
 from tkinter.filedialog import askdirectory
@@ -7,7 +8,7 @@ lik=str(input('Digite o link do YouTube: '))
 print(lik)
 print(verifica_origem(lik))
 if verifica_origem(lik):
-    lik=YouTube(lik)
+    lik=YouTube(lik, on_progress_callback=on_progress)
     print(lik)
 
     #audio, video ou ambos

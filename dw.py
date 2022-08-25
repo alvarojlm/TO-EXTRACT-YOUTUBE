@@ -1,8 +1,10 @@
 from pytube import YouTube
-
+from org_visual import Principal, Ui_Principal
+imp=Ui_Principal(Principal)
 def dw_video(sv, lik):
-    print('Digite a resolução que deseja: 720p, 480p, 360p')
-    res = input('Res: ')
+    '''print('Digite a resolução que deseja: 720p, 480p, 360p')
+    res = input('Res: ')'''
+    res = imp.select_resolution.itemText()
     lik=lik.streams.get_by_resolution(res)
     lik.download(output_path=sv)
 
