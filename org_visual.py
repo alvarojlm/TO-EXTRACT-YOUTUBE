@@ -2,6 +2,9 @@ from painel import Ui_Principal
 from PyQt5 import QtCore,QtGui,QtWidgets
 import sys
 from controle import *
+from dw import *
+from pytube import YouTube
+from tkinter.filedialog import askdirectory
 
 def seletor_res():
     b_ad=ui.button_audio
@@ -26,11 +29,19 @@ def baixar():
         msg.exec()
     else: 
         print('chegando')
-        try:
-            verifica_origem(ui.link.text()) 
-            print(verifica_origem(ui.link.text()))
-        except:
-            QtWidgets.QMessageBox().setText('Link inválido! Tente novamente.') 
+        if verifica_origem(ui.link.toPlainText()):
+            print('verificou')
+            sv=askdirectory()
+            lk=YouTube(ui.link.toPlainText())
+            if ui.button_audio.isChecked():
+                centro_dw(sv, lk, 2)
+            elif ui.button_video.isChecked():
+                centro_dw(sv, lk, 1)
+            ui.link.clear()
+        else:
+            t_invalido=QtWidgets.QMessageBox()
+            t_invalido.setText('Link inválido! Tente novamente.')
+            t_invalido.exec()
 
 
 
