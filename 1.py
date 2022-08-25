@@ -1,5 +1,3 @@
-import imp
-from multiprocessing.util import is_abstract_socket_namespace
 from pytube import YouTube
 from controle import verifica_origem, tip_dw
 from dw import centro_dw
