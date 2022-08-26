@@ -1,11 +1,10 @@
 from painel import Ui_Principal
-from PyQt5 import QtCore,QtGui,QtWidgets
+from PyQt5 import QtWidgets, QtGui
 import sys
-from controle import *
 from dw import *
 from pytube import YouTube
-from pytube.cli import on_progress
 from tkinter.filedialog import askdirectory
+
 
 
 def seletor_res():
@@ -20,24 +19,21 @@ def seletor_res():
         resol.hide()
 
 def baixar():
-    print('clicou')
     aud=ui.button_audio.isChecked()
     vd=ui.button_video.isChecked()
     if ((aud == False) and (vd == False)):
-        print('Não selc')
         msg_erro_selc_strem()
     else: 
-        print('chegando')
         if verifica_origem(ui.link.toPlainText()):
-            print('verificou')
             sv=askdirectory()
-            lk=YouTube(ui.link.toPlainText(), on_progress_callback=on_progress)
+            lk=YouTube(ui.link.toPlainText())
             resolt = ui.select_resolution.currentText()
             if ui.button_audio.isChecked():
                 centro_dw(sv, lk, 2)
             elif ui.button_video.isChecked():
                 centro_dw(sv, lk, 1, resolt)
 
+            msg_concl()
             ui.link.clear()
         else:
             t_invalido=QtWidgets.QMessageBox()
@@ -45,11 +41,21 @@ def baixar():
             t_invalido.exec()
 
 def msg_erro_selc_strem():
-        msg=QtWidgets.QMessageBox()
-        msg.setWindowTitle('Ops... atenção!')
-        msg.setText('Você não selecionou como deseja baixar o arquivo! Por favor, selecione para fazer o download.')
-        msg.exec()
+    msg=QtWidgets.QMessageBox()
+    msg.setWindowTitle('Ops... atenção!')
+    msg.setText('Você não selecionou como deseja baixar o arquivo! Por favor, selecione para fazer o download.')
+    msg.exec()
 
+def msg_concl():
+    msg=QtWidgets.QMessageBox()
+    ic = QtGui.QPixmap()
+    ic.load('azul_ccl.png')
+    ic=ic.scaledToWidth(190)
+    ic=ic.scaledToHeight(90)
+    msg.setIconPixmap(ic)
+    msg.setWindowTitle('Tudo certo!')
+    msg.setText('Seu download foi realizado com sucesso. Aproveito seu stream!')
+    msg.exec()
 
 
 
@@ -61,5 +67,3 @@ ui.button_video.clicked.connect(seletor_res)
 ui.Gerar_stream.clicked.connect(baixar)
 Principal.show()
 sys.exit(app.exec_())
-
-

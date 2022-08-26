@@ -1,5 +1,8 @@
 from pytube import YouTube
 
+def verifica_origem(lk: str ) -> bool:
+    if 'https://www.youtube.com' in lk: return True
+    else: return False
 
 
 def dw_video(sv, lik: YouTube, res=str):

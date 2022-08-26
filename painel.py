@@ -178,7 +178,7 @@ class Ui_Principal(object):
         self.select_resolution.setGeometry(QtCore.QRect(310, 260, 86, 25))
         self.select_resolution.setObjectName("select_resolution")
 
-        resolution_list = ["1080p", "720p","360p"]
+        resolution_list = ["720p", "480p", "360p"]
 
         self.select_resolution.addItems(resolution_list)
         self.select_resolution.hide()
@@ -200,7 +200,6 @@ class Ui_Principal(object):
         self.Cole.setText(_translate("Principal", "Cole o link aqui:"))
         self.button_video.setText(_translate("Principal", "Video"))
         self.button_audio.setText(_translate("Principal", "Audio"))
-
 
 if __name__ == "__main__":
     import sys
